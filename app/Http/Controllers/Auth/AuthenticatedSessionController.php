@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -32,8 +34,8 @@ class AuthenticatedSessionController extends Controller
 
         // Cek peran pengguna setelah login
         if (Auth::user()->isAdmin()) {
-            // Pengguna admin diarahkan ke /admin/dashboard
-            return redirect()->route('admin.dashboard');
+            // Pengguna admin diarahkan ke /dashboard
+            return redirect()->route('dashboard');
         }
 
         // Pengguna biasa diarahkan ke /user/dashboard

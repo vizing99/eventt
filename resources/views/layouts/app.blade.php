@@ -14,7 +14,13 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
+                            @if(Auth::check() && Auth::user()->role === 'admin')
+    <!-- Link untuk Admin -->
+    <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+@else
+    <!-- Link untuk User -->
+    <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
+@endif
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"

@@ -8,6 +8,21 @@ use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
 {
+
+    public function __construct()
+    {
+        // Pastikan hanya pengguna yang sudah login dan terverifikasi yang bisa mengakses
+        // $this->middleware(['auth', 'verified']);
+
+        // Middleware custom untuk memastikan hanya admin yang bisa mengakses
+        // $this->middleware(function ($request, $next) {
+        //     if (auth()->user()->role !== 'admin') {
+        //         return redirect()->route('user.dashboard'); // Jika bukan admin, redirect ke dashboard user
+        //     }
+        //     return $next($request);
+        // });
+    }
+
     public function index()
     {
         // Ambil statistik yang diperlukan untuk dashboard
@@ -19,15 +34,5 @@ class AdminDashboardController extends Controller
         return view('admin.dashboard', compact('eventCount', 'userCount', 'latestEvent'));
     }
 
-    public function __construct()
-{
-    $this->middleware(['auth','verified']);
-    $this->middleware(function ($request, $next) {
-        if (auth()->user()->role !== 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
-        return $next($request);
-    });
-}
 
 }
