@@ -21,10 +21,10 @@ class AdminDashboardController extends Controller
 
     public function __construct()
 {
-    $this->middleware('auth');
+    $this->middleware(['auth','verified']);
     $this->middleware(function ($request, $next) {
         if (auth()->user()->role !== 'admin') {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('admin.dashboard');
         }
         return $next($request);
     });

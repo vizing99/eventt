@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Mail;
 class EventRegistrationNotification extends Notification
 {
     use Queueable;
+    protected $event;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(Event $event)
     {
-        //
+        $this->event = $event;
     }
 
     /**
@@ -37,12 +38,12 @@ class EventRegistrationNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->subject('Pendaftaran Acara Berhasil')
-        ->line('Anda telah berhasil mendaftar untuk acara ' . $this->event->title)
-        ->action('Lihat Acara', url('/events/' . $this->event->id));
+                    ->subject('Pendaftaran Acara Berhasil')
+                    ->line('Anda telah berhasil mendaftar pada acara ' . $this->event->title)
+                    ->action('Lihat Acara', url('/events/' . $this->event->id));
     }
 
     /**

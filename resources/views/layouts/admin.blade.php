@@ -7,10 +7,10 @@
     <title>Admin Dashboard - Event Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
@@ -23,18 +23,27 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-white nav-link" href="{{ route('events.index') }}">
+                        <a class="text-white nav-link" href="{{ route('admin.event.list') }}">
                             <i class="fa fa-calendar" aria-hidden="true"></i> Manajemen Acara
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-white nav-link" href="{{ route('profile.edit') }}">
-                            <i class="fa fa-user" aria-hidden="true"></i> Profile
+                        <a class="text-white nav-link" href="{{ route('admin.user.list') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i> Manajemen Pengguna
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="text-white nav-link" href="{{ route('logout') }}"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="text-white nav-link" href="{{ route('admin.registration.list') }}">
+                            <i class="fa fa-file-text" aria-hidden="true"></i> Pendaftaran Acara
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text-white nav-link" href="{{ route('admin.profile') }}">
+                            <i class="fa fa-user" aria-hidden="true"></i> Profil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text-white nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -52,6 +61,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 
 </html>
